@@ -1,0 +1,60 @@
+html, body {
+  font-family: arial;
+}
+
+.game-container {
+  text-align: center;
+
+  .player-one {
+    color: red;
+  }
+
+  .player-two {
+    color: blue;
+  }
+
+  .board {
+
+    .spot {
+      display: inline-block;
+      min-height: 50px;
+      min-width: 50px;
+      margin: 5px;
+      border-radius: 50%;
+      background: gray;
+      cursor: pointer;
+
+      @media(max-width: 435px) {
+        min-width: 40px;
+        min-height: 40px;
+        margin: 3px;
+      }
+
+      @media(max-width: 345px) {
+        min-width: 35px;
+        min-height: 35px;
+        margin: 2px;
+      }
+
+      @media(max-width: 290px) {
+        min-width: 30px;
+        min-height: 30px;
+        margin: 2px;
+      }
+
+      @media(max-width: 255px) {
+        min-width: 20px;
+        min-height: 20px;
+        margin: 2px;
+      }
+
+      &.player-1-dot {
+        background: red;
+      }
+
+      &.player-2-dot {
+        background: blue;
+      }
+    }
+  }
+}
