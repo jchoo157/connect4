@@ -89,7 +89,8 @@ export default class App extends Component {
     this.setState({
       gameBoard: this.createGame(7, 6),
       playerTurn: 'Player One',
-      winner: false
+      winner: false,
+      tie: false
     })
   }
 
