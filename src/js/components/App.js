@@ -8,6 +8,7 @@ export default class App extends Component {
       gameBoard: this.createGame(7, 6),
       playerTurn: 'Player One',
       winner: false,
+      tie: false,
       score: {
         'Player One': 0,
         'Player Two': 0
@@ -198,6 +199,18 @@ export default class App extends Component {
     return count == 4
   }
 
+  checkTieGame() {
+    const {gameBoard} = this.state;
+
+    for(var i = 0; i < gameBoard.length; i++) {
+      if (gameBoard[i].includes('-')) {
+        return false
+      }
+    }
+
+    return true
+  }
+
   checkIfWinner(rowIndex, colIndex) {
     const {playerTurn, score} = this.state;
     let nextPlayer = playerTurn == 'Player One' ? 'Player Two' : 'Player One';
@@ -211,25 +224,28 @@ export default class App extends Component {
       let copyScore = Object.assign({}, score);
       copyScore[playerTurn] += 1
       this.setState({winner: true, score: copyScore})
+    } else if (this.checkTieGame()) {
+      this.setState({tie: true})
     } else {
       this.setState({playerTurn: nextPlayer})
     }
   }
 
   render() {
-    const {playerTurn, winner, score} = this.state;
+    const {playerTurn, winner, score, tie} = this.state;
     let headerClass = playerTurn == 'Player One' ? 'player-one' : 'player-two';
 
     return (
       <div className="game-container">
         <h1 className={headerClass}>{winner ? `${playerTurn} has won!` : playerTurn}</h1>
-        {winner ? <button onClick={this.resetGame}>New Game</button> : null}
+        <h1>{tie ? "TIE GAME" : null}</h1>
         <div className="board">
           {this.displayGame()}
         </div>
         <div className="score">
-          <p>Player One: {score['Player One']}</p>
-          <p>Player Two: {score['Player Two']}</p>
+          <p className="red">Player One: {score['Player One']}</p>
+          <p className="blue">Player Two: {score['Player Two']}</p>
+          <div className="new-game-btn" onClick={this.resetGame}>New Game</div>
         </div>
       </div>
     )
