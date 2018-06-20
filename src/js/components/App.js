@@ -118,7 +118,7 @@ export default class App extends Component {
       }
     }
 
-    return count == 4
+    return count >= 4
   }
 
   checkVertical(rowIndex, colIndex) {
@@ -143,7 +143,7 @@ export default class App extends Component {
       }
     }
 
-    return count == 4
+    return count >= 4
   }
 
   checkTopRightToBotLeftDiagnol(rowIndex, colIndex) {
@@ -170,7 +170,7 @@ export default class App extends Component {
       }
     }
 
-    return count == 4
+    return count >= 4
   }
 
   checkBotLeftToTopRightDiagnol(rowIndex, colIndex) {
@@ -197,7 +197,7 @@ export default class App extends Component {
       }
     }
 
-    return count == 4
+    return count >= 4
   }
 
   checkTieGame() {
